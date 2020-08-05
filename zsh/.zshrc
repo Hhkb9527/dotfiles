@@ -932,3 +932,4 @@ source ~/.zsh/plugin/docker-alias.zsh
 # gpgconf --launch gpg-agent
 
 # vim:fdm=marker
+bindkey "," autosuggest-accept
