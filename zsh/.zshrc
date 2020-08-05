@@ -935,4 +935,4 @@ source ~/.zsh/plugin/docker-alias.zsh
 
 
 bindkey "," autosuggest-accept
-# export LESSCHARSET=utf8
+export LESSCHARSET=utf8 # 解决git显示乱码
