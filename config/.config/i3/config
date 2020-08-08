@@ -251,3 +251,6 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 
 # modeline
 # vim:fdm=marker:fmr=[[[,]]]
+
+# 设置i3壁纸
+exec_always --no-startup-id feh --randomize --bg-fill ~/mine/*
