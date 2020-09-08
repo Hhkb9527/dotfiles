@@ -144,7 +144,7 @@ mode "resize" {
 set $ws1 1:TMUX
 set $ws2 2:GVIM
 set $ws3 3:FOX
-set $ws4 4
+set $ws4 4:MK
 set $ws5 5
 set $ws6 6
 set $ws7 7
