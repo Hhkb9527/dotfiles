@@ -940,6 +940,7 @@ source ~/.zsh/plugin/docker-alias.zsh
 # vim:fdm=marker
 
 
+alias lla="ls -al"
 bindkey "," autosuggest-accept
 export LESSCHARSET=utf8 # 解决git显示乱码
 
