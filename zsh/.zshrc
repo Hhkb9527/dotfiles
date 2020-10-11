@@ -1,9 +1,3 @@
-# 调节分辨率
-cvt 1920 1080 60
-xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
-xrandr --addmode Virtual1 "1920x1080_60.00"
-xrandr -s 1920x1080_60.00
-
 # 确定环境 {{{1
 OS=${$(uname)%_*}
 if [[ $OS == "CYGWIN" || $OS == "MSYS" ]]; then
@@ -940,8 +934,19 @@ source ~/.zsh/plugin/docker-alias.zsh
 # vim:fdm=marker
 
 
+
 alias lla="ls -al"
 bindkey "," autosuggest-accept
 export LESSCHARSET=utf8 # 解决git显示乱码
 
 eval $(thefuck --alias)
+
+# 调节分辨率
+resolution=$(xrandr | grep current | sed 's/.*current\ \([0-9]\{4\}\ x\ [0-9]\{4\}\).*/\1/')
+if [ ${resolution} != '1920 x 1080' ]
+then
+  cvt 1920 1080 60
+  xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+  xrandr --addmode Virtual1 "1920x1080_60.00"
+  xrandr -s 1920x1080_60.00
+fi
