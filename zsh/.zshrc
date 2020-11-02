@@ -952,3 +952,8 @@ then
   # 调整完分辨率要重新设置壁纸，否则壁纸不能完全适应屏幕
   feh --randomize --bg-fill ~/.config/i3/paper/*
 fi
+
+# 配置python虚拟环境
+export WORKON_HOME=$HOME/.virtualenvs
+source ~/.local/bin/virtualenvwrapper.sh  # which virtualenvwrapper.sh命令获取
+VIRTUALENVWRAPPER_PYTHON=/usr/bin/python  # which Python3命令获取
