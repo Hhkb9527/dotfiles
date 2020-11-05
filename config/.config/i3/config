@@ -4,7 +4,6 @@ set $mod Mod1
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
-
 default_border none
 default_floating_border none
 
@@ -209,15 +208,15 @@ set $white  #FBF1C7
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	status_command i3status
-	font xft:Sans 10
-	position top
+  status_command i3status
+  font xft:Sans 10
+  position top
 
 # please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
+#   tray_output primary
+#   tray_output eDP1
 
-	strip_workspace_numbers yes
+  strip_workspace_numbers yes
 
     colors {
         # bar background color
