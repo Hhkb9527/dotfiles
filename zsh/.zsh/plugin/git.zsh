@@ -244,5 +244,5 @@ alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commi
 
 # my config
 alias ghel="vim ~/.zsh/plugin/git.zsh"
-alias gpom="git push origin master"
-alias glom="git pull origin master"
+alias gpom="git push origin main"
+alias glom="git pull origin main"
