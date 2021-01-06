@@ -943,12 +943,12 @@ eval $(thefuck --alias)
 
 # 调节分辨率
 resolution=$(xrandr | grep current | sed 's/.*current\ \([0-9]\{4\}\ x\ [0-9]\{4\}\).*/\1/')
-if [ ${resolution} != '1920 x 1080' ]
+if [ ${resolution} != '2560 x 1440' ]
 then
-  cvt 1920 1080 60
-  xrandr --newmode "1920x1080_60.00"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
-  xrandr --addmode Virtual1 "1920x1080_60.00"
-  xrandr -s 1920x1080_60.00
+  cvt 2560 1440 60
+  xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
+  xrandr --addmode Virtual-1 "2560x1440_60.00"
+  xrandr -s 2560x1440_60.00
   # 调整完分辨率要重新设置壁纸，否则壁纸不能完全适应屏幕
   feh --randomize --bg-fill ~/.config/i3/paper/*
 fi
