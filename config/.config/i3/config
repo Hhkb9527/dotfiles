@@ -1,6 +1,6 @@
 # Basic setting [[[1
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod1
+set $mod Mod4
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -29,7 +29,7 @@ bindsym $mod+Return exec alacritty
 
 # bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+a kill
 
 # rofi
 bindsym $mod+d exec --no-startup-id rofi -show run -display-run ""
