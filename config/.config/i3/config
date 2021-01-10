@@ -29,7 +29,7 @@ bindsym $mod+Return exec alacritty
 
 # bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
-bindsym $mod+Shift+a kill
+bindsym $mod+Shift+e kill
 
 # rofi
 bindsym $mod+d exec --no-startup-id rofi -show run -display-run ""
