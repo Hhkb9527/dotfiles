@@ -959,7 +959,7 @@ eval $(thefuck --alias)
 # sudo pacman -S gtkmm gtk2  xf86-video-vmware
 # 1.虚拟机设置：View -> Autosize -> Autofit Guest ， 此项应该被勾选
 # 2.编辑/etc/mkinitcpio.conf，找到MODULES，添加以下括号里的容
-#   MODULES=(vsock vmw_vsock_vmci_transport vmw_balloon vmw_vmci vmwgfx)
+#       MODULES=(vsock vmw_vsock_vmci_transport vmw_balloon vmw_vmci vmwgfx)
 #   之后回到终端执行: mkinitcpio -p linux
 # 3.自启动设置
 #   systemctl enable vmtoolsd
@@ -970,3 +970,4 @@ eval $(thefuck --alias)
 export WORKON_HOME=$HOME/.virtualenvs
 source ~/.local/bin/virtualenvwrapper.sh  # which virtualenvwrapper.sh命令获取
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python  # which Python3命令获取
+export PATH="$PATH:$HOME/.ft"
