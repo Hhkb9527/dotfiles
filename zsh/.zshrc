@@ -971,3 +971,4 @@ export WORKON_HOME=$HOME/.virtualenvs
 source ~/.local/bin/virtualenvwrapper.sh  # which virtualenvwrapper.sh命令获取
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python  # which Python3命令获取
 export PATH="$PATH:$HOME/.ft"
+alias cman=man\ -M\ /usr/share/man/zh_CN
