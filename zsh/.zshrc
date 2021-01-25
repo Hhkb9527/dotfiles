@@ -941,30 +941,6 @@ export LESSCHARSET=utf8 # 解决git显示乱码
 
 eval $(thefuck --alias)
 
-# 调节分辨率
-# resolution=$(xrandr | grep current | sed 's/.*current\ \([0-9]\{4\}\ x\ [0-9]\{4\}\).*/\1/')
-# if [ ${resolution} != '2560 x 1440' ]
-# then
-  # cvt 2560 1440 60
-  # xrandr --newmode "2560x1440_60.00"  312.25  2560 2752 3024 3488  1440 1443 1448 1493 -hsync +vsync
-  # xrandr --addmode Virtual-1 "2560x1440_60.00"
-  # xrandr -s 2560x1440_60.00
-  # # 调整完分辨率要重新设置壁纸，否则壁纸不能完全适应屏幕
-  # feh --randomize --bg-fill ~/.config/i3/paper/*
-# fi
-
-# 安装open-vm-tools 并自动自动适应屏幕大小
-# 参考: https://poemdear.com/2019/11/29/%E5%9C%A8vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E5%AE%89%E8%A3%85%E7%9A%84arch-linux%E9%87%8C%E5%AE%89%E8%A3%85vmware-tools/
-# sudo pacman -S  open-vm-tools
-# sudo pacman -S gtkmm gtk2  xf86-video-vmware
-# 1.虚拟机设置：View -> Autosize -> Autofit Guest ， 此项应该被勾选
-# 2.编辑/etc/mkinitcpio.conf，找到MODULES，添加以下括号里的容
-#       MODULES=(vsock vmw_vsock_vmci_transport vmw_balloon vmw_vmci vmwgfx)
-#   之后回到终端执行: mkinitcpio -p linux
-# 3.自启动设置
-#   systemctl enable vmtoolsd
-# 4.重启
-
 
 # 配置python虚拟环境
 export WORKON_HOME=$HOME/.virtualenvs
