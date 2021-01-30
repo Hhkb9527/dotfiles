@@ -682,7 +682,6 @@ dsf(){
 
 alias md=mkdir
 alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
-alias vi=vim
 
 alias py=python
 alias ipy=ipython
@@ -935,12 +934,10 @@ source ~/.zsh/plugin/docker-alias.zsh
 
 
 
-alias lla="ls -al"
 bindkey "," autosuggest-accept
 export LESSCHARSET=utf8 # 解决git显示乱码
 
 eval $(thefuck --alias)
-
 
 # 配置python虚拟环境
 export WORKON_HOME=$HOME/.virtualenvs
