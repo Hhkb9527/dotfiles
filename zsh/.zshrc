@@ -934,7 +934,7 @@ source ~/.zsh/plugin/docker-alias.zsh
 
 
 
-bindkey "," autosuggest-accept
+bindkey "^k" autosuggest-accept
 export LESSCHARSET=utf8 # 解决git显示乱码
 
 eval $(thefuck --alias)
