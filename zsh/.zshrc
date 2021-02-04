@@ -933,10 +933,8 @@ source ~/.zsh/plugin/docker-alias.zsh
 # vim:fdm=marker
 
 
-
 bindkey "^k" autosuggest-accept
 export LESSCHARSET=utf8 # 解决git显示乱码
-
 eval $(thefuck --alias)
 
 # 配置python虚拟环境
@@ -945,6 +943,7 @@ source ~/.local/bin/virtualenvwrapper.sh  # which virtualenvwrapper.sh命令获�
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python  # which Python3命令获取
 export PATH="$PATH:$HOME/.ft:$HOME/go/bin"
 alias cman=man\ -M\ /usr/share/man/zh_CN
+alias Vim="vim"
 
 # fucking-script
 alias ipfmt="python3 $HOME/fucking-script/ip_format.py"

@@ -44,13 +44,13 @@ expected-line-ending-format=LF
 # Regexp for a line that is allowed to be longer than the limit.
 ignore-long-lines=^\s*(# )?<?https?://\S+>?$
 
-# Maximum number of characters on a single line.
-max-line-length=120
-
-# Maximum number of lines in a module.
-max-module-lines=2000
-max-locals=25
 max-args=10
+max-locals=30
+max-branches=20
+max-statements=70
+max-line-length=120
+max-module-lines=2000
+max-public-methods=40
 
 
 [EXCEPTIONS]
