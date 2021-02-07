@@ -1,0 +1,3 @@
+[tool]
+    [tool.black]
+    line-length=120
