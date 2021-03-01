@@ -6,7 +6,7 @@ success_symbol = "[λ](bold green)"
 error_symbol = "[✗](bold red)"
 
 [directory]
-format = "ω [$path]($style)[$read_only]($read_only_style) "
+format = "[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 999
 
 [username]
