@@ -938,6 +938,7 @@ export LESSCHARSET=utf8 # 解决git显示乱码
 eval $(thefuck --alias)
 
 # 配置python虚拟环境
+# pip install virtualenv && virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 source ~/.local/bin/virtualenvwrapper.sh  # which virtualenvwrapper.sh命令获取
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python  # which Python3命令获取
