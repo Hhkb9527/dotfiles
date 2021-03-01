@@ -948,3 +948,4 @@ alias Vim="vim"
 
 # fucking-script
 alias ipfmt="python3 $HOME/fucking-script/ip_format.py"
+alias rekeymap="sh $HOME/dotfiles/sh/xmodmap.sh"
