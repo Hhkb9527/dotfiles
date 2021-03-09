@@ -1,15 +1,3 @@
-# 确定环境 {{{1
-OS=${$(uname)%_*}
-if [[ $OS == "CYGWIN" || $OS == "MSYS" ]]; then
-  OS=Linux
-elif [[ $OS == "Darwin" ]]; then
-  OS=FreeBSD
-fi
-if [ -f /etc/issue ] && grep -qis 'Arch Linux' /etc/issue; then
-  IS_ARCH=1
-else
-  IS_ARCH=0
-fi
 # check first, or the script will end wherever it fails
 zmodload zsh/regex 2>/dev/null && _has_re=1 || _has_re=0
 unsetopt nomatch
@@ -25,15 +13,9 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 
 zstyle :compinstall filename "$_zdir/.zshrc"
-#fpath=($_zdir/.zsh/Completion $_zdir/.zsh/functions $fpath)
 fpath=($_zdir/.zsh/Completion $_zdir/.zsh/functions $fpath)
 autoload -Uz compinit
 compinit
-
-# 變量設置 {{{1
-[[ -z $EDITOR ]] && (( $+commands[vim] )) && export EDITOR=vim
-export RUST_SRC_PATH=~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/
-export PATH=~/.cargo/bin/:~/.local/bin:$PATH
 
 # 图形终端下(包括ssh登录时)的设置{{{2
 if [[ -n $DISPLAY && -z $SSH_CONNECTION ]]; then
@@ -43,6 +25,7 @@ if [[ -n $DISPLAY && -z $SSH_CONNECTION ]]; then
 else
   export AGV_EDITOR='vim +"call setpos(\".\", [0, $line, $col, 0])" ''$file'''
 fi
+
 if [[ -n $DISPLAY || -n $SSH_CONNECTION ]]; then
   # 让 less 将粗体/下划线等显示为彩色
   export LESS_TERMCAP_mb=$'\x1b[01;31m'
@@ -68,24 +51,13 @@ else
   [[ $TERM == *color* ]] && _256colors=1
 fi
 
-if [[ $OS = Linux ]]; then
-  # under fbterm
-  # can't see parent on some restricted systems
-  if [[ $_has_re -eq 1 &&
-    $(</proc/$PPID/cmdline) =~ '(^|/)fbterm' ]] 2>/dev/null; then
-  export TERM=fbterm
-  echo hh
-  export LANG=zh_CN.UTF-8
-  # This term is quirk. ls doesn't like it.
-  # _256colors=1
-fi
 if [[ $_256colors -eq 1 ]]; then
   export LS_COLORS='rs=0:di=38;5;27:ln=38;5;51:mh=44;38;5;15:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=05;48;5;232;38;5;15:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;34:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.Z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.jpg=38;5;13:*.JPG=38;5;13:*.jpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.webm=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.axv=38;5;13:*.anx=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.m4a=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.opus=38;5;45:*.3gp=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.axa=38;5;45:*.oga=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:*~=38;5;244:'
 else
   (( $+commands[dircolors] )) && eval "$(dircolors -b)"
 fi
+
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-fi
 unset _256colors
 unset _has_re
 
@@ -102,7 +74,7 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 setopt pushd_minus
 # rm * 时不要提示
-setopt rm_star_silent
+# setopt rm_star_silent
 # 允许在交互模式中使用注释
 setopt interactive_comments
 # disown 后自动继续进程
@@ -274,8 +246,6 @@ bindkey '\e ' set-mark-command
 # FIXME 如何引起光标处的单词？
 bindkey -s "^['" "^[] ^f^@^e^[\""
 # 打开 zsh 的PDF格式文档
-bindkey -s "^X^D" "zathura ~/文档/编程/shell/zsh/zsh.pdf &^M"
-bindkey -s "^Xc" "tmux attach -d^M"
 
 bindkey '^[p' up-line-or-search
 bindkey '^[n' down-line-or-search
@@ -414,34 +384,6 @@ function Ga() { # 獲取PKGBUILD {{{2
   rm -rf "$1"/.git
 }
 
-function G() {
-  [ -z "$3" ] && echo "usage: $0 <$2 package name>: get $2 package PKGBUILD" && return 1
-  git clone https://git.archlinux.org/svntogit/$1.git/ -b packages/$3 --single-branch $3
-  mv "$3"/trunk/* "$3"
-  rm -rf "$3"/{repos,trunk,.git}
-}
-
-alias Ge="G packages core/extra"
-alias Gc="G community community"
-
-breakln () { #断掉软链接 {{{2
-  for f in $*; do
-    tgt=$(readlink "$f")
-    unlink "$f"
-    cp -rL "$tgt" "$f"
-  done
-}
-
-try_until_succeed () { #反复重试，直到成功 {{{2
-  while ! $*; do :; done
-}
-rmempty () { #删除空文件 {{{2
-  for i; do
-    [[ -f $i && ! -s $i ]] && rm $i
-  done
-  return 0
-}
-
 if [[ -d ${VIMTMP:=/tmp} ]]; then # {{{2 gcc & g++
   gcc () { # {{{3
     errfile=$VIMTMP/.error
@@ -451,49 +393,28 @@ if [[ -d ${VIMTMP:=/tmp} ]]; then # {{{2 gcc & g++
     return $ret
   }
   g++ () { # {{{3
-  errfile=$VIMTMP/.error
-  command g++ -g -Wall "$@" >$errfile 2>&1
-  ret=$?
-  cat $errfile
-  return $ret
-}
-clang () { # {{{3
-  errfile=$VIMTMP/.error
-  command clang -g -Wall "$@" >$errfile 2>&1
-  ret=$?
-  cat $errfile
-  return $ret
-}
-clang++ () { # {{{3
-errfile=$VIMTMP/.error
-command clang++ -g -Wall "$@" >$errfile 2>&1
-ret=$?
-cat $errfile
-return $ret
-}
+    errfile=$VIMTMP/.error
+    command g++ -g -Wall "$@" >$errfile 2>&1
+    ret=$?
+    cat $errfile
+    return $ret
+  }
+  clang () { # {{{3
+    errfile=$VIMTMP/.error
+    command clang -g -Wall "$@" >$errfile 2>&1
+    ret=$?
+    cat $errfile
+    return $ret
+  }
+  clang++ () { # {{{3
+    errfile=$VIMTMP/.error
+    command clang++ -g -Wall "$@" >$errfile 2>&1
+    ret=$?
+    cat $errfile
+    return $ret
+  }
 fi
-duppkg4repo () { #软件仓库中重复的软件包 {{{2
-  local repo=$1
-  [[ -z $repo ]] && { echo >&2 'which repository to examine?'; return 1 }
-  local pkgs
-  pkgs=$(comm -12 \
-    <(pacman -Sl $repo|awk '{print $2}'|sort) \
-    <(pacman -Sl|awk -vrepo=$repo '$1 != repo {print $2}'|sort) \
-    )
-  [[ -z $pkgs ]] && return 0
-  LANG=C pacman -Si ${=pkgs} | awk -vself=$repo '/^Repository/{ repo=$3; } /^Name/ && repo != self { printf("%s/%s\n", repo, $3); }'
-}
-iip () { #{{{2
-  qip=${1:-cip}
-  echo -n "ip> "
-  read ip
-  while [[ $ip != 'q' ]]; do
-    $qip $ip
-    echo -n "ip> "
-    read ip
-  done
-  unset ip
-}
+
 pid () { #{{{2
   s=0
   for i in $*; do
@@ -508,18 +429,20 @@ pid () { #{{{2
   done
   return $s
 }
+
 en () { # 使用 DNS TXT 记录的词典 {{{2
   # https://github.com/chuangbo/jianbing-dictionary-dns
   dig "$*.jianbing.org" +short txt | perl -pe's/\\(\d{1,3})/chr $1/eg; s/(^"|"$)//g'
 }
+
 shutdown () { #{{{2
   echo -n 你确定要关机吗？
   read i
   if [[ $i == [Yy] ]]; then
     systemctl poweroff
-    # dbus-send --system --print-reply --dest=org.freedesktop.ConsoleKit /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
   fi
 }
+
 killssh () { #{{{2 kill ssh that using default master socket
   local keys
   if [[ $# -le 1 ]]; then
@@ -565,6 +488,7 @@ mvgb () { # 文件名从 GB 转码，带确认{{{2
     echo
   done
 }
+
 ptyrun () { # 使用伪终端代替管道，对 ls 这种“顽固分子”有效 {{{2
   local ptyname=pty-$$
   zmodload zsh/zpty
@@ -582,6 +506,7 @@ ptyless () {
 screen2clipboard () { # 截图到剪贴板 {{{2
   import png:- | xclip -i -selection clipboard -t image/png
 }
+
 if [[ $TERM == xterm* || $TERM == *rxvt* ]]; then # {{{2 设置光标颜色
   cursorcolor () { echo -ne "\e]12;$*\007" }
 elif [[ $TERM == screen* ]]; then
@@ -594,112 +519,35 @@ elif [[ $TERM == tmux* ]]; then
   cursorcolor () { echo -ne "\ePtmux;\e\e]12;$*\007\e\\" }
 fi
 
-# GPG
-function gpg_restart {
-  pkill gpg
-  pkill pinentry
-  pkill ssh-agent
-  eval $(gpg-agent --daemon --enable-ssh-support) }
 
-function secret {
-  output="${HOME}/$(basename ${1}).$(date +%F).enc"
-  gpg --encrypt --armor \
-    --output ${output} \
-    -r $KEYID \
-    "${1}" && echo "${1} -> ${output}" }
-
-function reveal {
-  output=$(echo "${1}" | rev | cut -c16- | rev)
-  gpg --decrypt --output ${output} "${1}" \
-    && echo "${1} -> ${output}" }
-
-
-
-
-# 別名 {{{1
 alias vi=vim
 alias nv=nvim
-alias pxy='proxychains -q'
-alias :q="exit"
-alias :qa="tmux detach"
-alias 7z="7z '-xr!*~' '-xr!*.swp'"
-
-alias k="kubectl"
-
-(($+commands[exa])) && {
-  alias e='exa'
-  xtree () {
-    exa -Tl "$@"
-  }
-  alias l='exa -al'
-} || {
-  alias l='ls -lah --color=auto'
-}
+alias Vim=vim
+alias md=mkdir
 
 alias ls='ls --color=auto'
-alias ll='ls -l'
+alias ll='ls -lh'
 alias la='ls -la'
-alias lh='ls -lh'
 alias grep='grep --color'
-
-function scrotclip() {
-  scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'
-}
-
 
 alias start="sudo systemctl start"
 alias status="sudo systemctl status"
 alias stop="sudo systemctl stop"
 alias restart="sudo systemctl restart"
-alias .="source"
+
 alias cp="cp -i --reflink=auto"
-alias ssh="TERM=xterm-256color ssh"
 alias bc="bc -l"
-alias cower="cower --domain aur.tuna.tsinghua.edu.cn"
-alias ydcvd="ydcv -x -n -t 2 >/dev/null"
-alias clip="xsel -i -b"
+alias ssh="TERM=xterm-256color ssh"
 
-alias gtar="tar -Ipigz czfv"
-alias btar="tar -Ilbzip3 cjfv"
-alias 7tar="7z a -mmt"
-alias xcp="rsync -aviHAXKhP --delete --exclude='*~' --exclude=__pycache__"
+alias xtar="tar -xvzf"
+alias ctar="tar -cvzf"
 alias tmux="tmux -2"
-alias urldecode='python2 -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-alias urlencode='python2 -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
-alias with-github-name='GIT_COMMITTER_NAME=BennyYip GIT_COMMITTER_EMAIL=yebenmy@protonmail.com GIT_AUTHOR_NAME=BennyYip GIT_AUTHOR_EMAIL=yebenmy@protonmail.com'
-
-alias pvim="curl -F 'vimcn=<-' https://cfp.vim-cn.com/"
-alias pfc="curl -F c=@- http://fars.ee/"
-imgvim(){
-  curl -F "name=@$1" https://img.vim-cn.com/
-}
-
-
-dsf(){
-  # depends on diff-so-fancy
-  git diff --patience --color=always $@ | diff-so-fancy | less --tab=4 -RFX
-}
-
-alias md=mkdir
-alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
 
 alias py=python
 alias ipy=ipython
 alias bpy=bpython
 
-[ $commands[ghq] ]  && {
-  alias glook='cd $(ghq list -p | sk)'
-  alias gget='ghq get'
-}
-(( $+commands[diff-so-fancy] )) && alias diff-so-fancy='diff-so-fancy | less'
-# 後綴別名 {{{2
-alias -s pdf=zathura
-alias -s {jpg,png,gif}=feh
-alias -s tar="tar -xvf"
-alias -s {tgz,gz}="tar -xvzf"
-alias -s bz2="tar -xvjf"
-alias -s zip=unzip
-alias -s epub="emacsclient -n"
+alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
 
 # pacman aliases and functions {{{2
 function Syu(){
@@ -717,9 +565,7 @@ alias Ql="pacman -Ql"
 alias Fo="pacman -F"
 alias Fy="sudo pacman -Fy"
 alias Ssa="pacaur -Ssa"
-alias pain='sudo pacman -S --needed'
-alias painn='sudo pacmban -S'
-alias cower='cower --domain aur.tuna.tsinghua.edu.cn'
+alias painn='sudo pacman -S'
 
 paclist() {
   # Source: https://bbs.archlinux.org/viewtopic.php?id=93683
@@ -727,26 +573,7 @@ paclist() {
     awk 'BEGIN {FS=":"} /^Name/{printf("\033[1;36m%s\033[1;37m", $2)} /^Description/{print $2}'
 }
 
-alias upvim="vim +PlugUpgrade +PlugUpdate"
-
-# 全局别名 {{{2
-# 当前目录下最后修改的文件
-# 来自 http://roylez.heroku.com/2010/03/06/zsh-recent-file-alias.html
-alias -g NN="*(oc[1])"
-alias -g NNF="*(oc[1].)"
-alias -g NUL="/dev/null"
-alias -g XS='"$(xclip)"'
-alias -g ANYF='**/*[^~](.)'
-
 # 軟件設置 {{{1
-# git {{{2
-if [ $IS_ARCH == 0 ];
-then
-    export GIT_COMMITTER_NAME=bennyye
-    export GIT_COMMITTER_EMAIL=bennyye@tencent.com
-    export GIT_AUTHOR_NAME=$GIT_COMMITTER_NAME
-    export GIT_AUTHOR_EMAIL=$GIT_COMMITTER_EMAIL
-fi
 # zsh {{{2
 # 提示符
 # %n --- 用户名
@@ -838,114 +665,51 @@ fi
 # prompt {{{3
 setopt PROMPT_SUBST
 
-E=$'\x1b'
-
-function lambda()
-{
-  if [[ $? == 0  ]]; then
-    echo '\n%F{yellow}λ'
-  else
-    echo '%F{red}(%?)\nλ'
-  fi
-}
-
-if (( $+commands[starship] )); then
-    eval $(starship init zsh)
-else
-    ipL=$(ip -o -4 addr | awk -F "inet |/" '!/127.0.0.1/ {print $2}' | sort -n | head -n 1)
-
-    if [[ -n $DISPLAY ]]; then
-      PS1='%F{74}%* %F{114}%n%F{white} @ %F{174}%M %F{white}ω %F{142}%~ %F{yellow}$_current_branch$(lambda) %f'
-    elif [[ -n $SSH_CONNECTION ]]; then
-      PS1='%F{74}%* %F{114}%n%F{white}@%F{174}$ipL%F{white}:%F{142}%~ %F{yellow}$_current_branch$(lambda) %f'
-    else
-      # do not use unicode in tty
-      PS1='%F{yellow}%* %F{cyan}%n%F{white} @ %F{magenta}%M %F{white}in %F{green}%~ %F{red}$_current_branch %F{cyan}
-    >>>%f '
-    fi
-
-    # 次提示符：使用暗色
-    PS2="%{${E}[2m%}%_>%{${E}[0m%} "
-    unset E
-
-    # 分割线
-    # PS1=$'${(r:$COLUMNS::\u2500:)}'$PS1
-fi
-
 CORRECT_IGNORE='_*'
 READNULLCMD=less
 watch=(notme root)
 WATCHFMT='%n has %a %l from %M'
 REPORTTIME=5
 
-# ranger-cd {{{2
-# Automatically change the directory in bash after closing ranger
-#
-# This is a bash function for .bashrc to automatically change the directory to
-# the last visited one after ranger quits.
-# To undo the effect of this function, you can type "cd -" to return to the
-# original directory.
-function ranger-cd {
-  tempfile="$(mktemp)"
-  /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-  test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-      cd -- "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile"
-  }
 # Tmux {{{2
 export DISABLE_AUTO_TITLE=true
 # Ripgrep {{{2
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
-# Plugin {{{1
+
+# Plugin
 source ~/.zsh/plugin/git.zsh
-[ $commands[sk] ] && source ~/.zsh/plugin/sk-tools.zsh
 source ~/.zsh/plugin/commacd.zsh
-
+source ~/.zsh/plugin/z.lua.plugin.zsh
+source ~/.zsh/plugin/docker-alias.zsh
 source ~/.zsh/plugin/zsh-autosuggestions.zsh
-
 source ~/.zsh/plugin/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ~/.zsh/plugin/autopair.zsh && autopair-init
+[ $commands[sk] ] && source ~/.zsh/plugin/sk-tools.zsh
 
-if [[ $IS_ARCH == 1 ]]; then
-    ZSH_AUTOSUGGEST_USE_ASYNC=1
-    FAST_HIGHLIGHT[use_async]=1
-fi
-
+# zsh-autosuggestions plugin
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+# fast-syntax-highlighting plugin
+FAST_HIGHLIGHT[use_async]=1
 
 export _ZL_FZF=sk
-source ~/.zsh/plugin/z.lua.plugin.zsh
+export PATH=~/.local/bin:$PATH
+export LESSCHARSET=utf8  # 解决git显示乱码
 
-source ~/.zsh/plugin/docker-alias.zsh
-
-# Modeline {{{1
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local || true
-
-# put in .zshrc.local
-#
-# export KEYID=0x11CD7ED945B1A60F
-#
-# export GPG_TTY="$(tty)"
-# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-# gpgconf --launch gpg-agent
-
-# vim:fdm=marker
-
+(( $+commands[vim] )) && export EDITOR=vim
+(( $+commands[starship]  )) && eval $(starship init zsh)
 
 bindkey "^k" autosuggest-accept
-export LESSCHARSET=utf8 # 解决git显示乱码
 eval $(thefuck --alias)
 
-# 配置python虚拟环境
 # pip install virtualenv && virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
-source ~/.local/bin/virtualenvwrapper.sh  # which virtualenvwrapper.sh命令获取
-VIRTUALENVWRAPPER_PYTHON=/usr/bin/python  # which Python3命令获取
-export PATH="$PATH:$HOME/.ft:$HOME/go/bin"
-alias cman=man\ -M\ /usr/share/man/zh_CN
-alias Vim="vim"
+source $(which virtualenvwrapper.sh)
+export VIRTUALENVWRAPPER_PYTHON=$(which python)
 
-# fucking-script
+# depends on fucking-script
 alias ipfmt="python3 $HOME/fucking-script/ip_format.py"
 alias rekeymap="sh $HOME/dotfiles/sh/xmodmap.sh"
+
+# fancy command:
+#   cmatrix sl screenfetch
+cmatrix -absr
