@@ -187,9 +187,6 @@ zstyle ':completion:*:*:feh:*' file-patterns '*.{png,gif,jpg,svg}:images:images 
 zstyle ':completion:*:*:sxiv:*' file-patterns '*.{png,gif,jpg}:images:images *(-/):directories:directories'
 zstyle ':completion:*:*:timidity:*' file-patterns '*.mid'
 
-# 命令行编辑{{{1
-bindkey -e
-
 # ^Xe 用$EDITOR编辑命令
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -698,7 +695,7 @@ export LESSCHARSET=utf8  # 解决git显示乱码
 (( $+commands[vim] )) && export EDITOR=vim
 (( $+commands[starship]  )) && eval $(starship init zsh)
 
-bindkey "^k" autosuggest-accept
+bindkey "" autosuggest-accept
 eval $(thefuck --alias)
 
 # pip install virtualenv && virtualenvwrapper
