@@ -187,6 +187,7 @@ zstyle ':completion:*:*:feh:*' file-patterns '*.{png,gif,jpg,svg}:images:images 
 zstyle ':completion:*:*:sxiv:*' file-patterns '*.{png,gif,jpg}:images:images *(-/):directories:directories'
 zstyle ':completion:*:*:timidity:*' file-patterns '*.mid'
 
+bindkey -e
 # ^Xe 用$EDITOR编辑命令
 autoload -Uz edit-command-line
 zle -N edit-command-line
