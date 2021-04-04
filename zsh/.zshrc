@@ -715,4 +715,4 @@ alias rekeymap="sh $HOME/dotfiles/sh/xmodmap.sh"
 
 # fancy command:
 #   cmatrix sl screenfetch
-cmatrix -absr
+# cmatrix -absr
