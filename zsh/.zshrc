@@ -716,3 +716,4 @@ alias rekeymap="sh $HOME/dotfiles/sh/xmodmap.sh"
 # fancy command:
 #   cmatrix sl screenfetch
 # cmatrix -absr
+export PATH="$PATH:$HOME/.ft"

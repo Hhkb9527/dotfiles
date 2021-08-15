@@ -1,8 +1,8 @@
 [user]
-name = Elijah-F
-email = Zhao_xiangshen@163.com
-; name = fufuzhao
-; email = fufuzhao@tencent.com
+; name = Elijah-F
+; email = Zhao_xiangshen@163.com
+name = fufuzhao
+email = fufuzhao@tencent.com
 
 [pull]
 rebase = false
