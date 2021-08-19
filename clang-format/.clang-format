@@ -9,8 +9,8 @@ IndentWidth: 4
 ColumnLimit: 120
 PointerAlignment: Right
 MaxEmptyLinesToKeep: 1
-AlignConsecutiveDeclarations: true
-AlignConsecutiveAssignments: true
+# AlignConsecutiveDeclarations: true
+# AlignConsecutiveAssignments: true
 AlignConsecutiveMacros: true
 AllowAllArgumentsOnNextLine: true
 AllowAllConstructorInitializersOnNextLine: false
