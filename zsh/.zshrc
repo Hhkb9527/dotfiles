@@ -696,13 +696,13 @@ FAST_HIGHLIGHT[use_async]=1
 
 export _ZL_FZF=sk
 export PATH=~/.local/bin:$PATH
-export LESSCHARSET=utf8  # 解决git显示乱码
+export LESSCHARSET=utf-8  # 解决git显示乱码
 
 (( $+commands[vim] )) && export EDITOR=vim
 (( $+commands[starship]  )) && eval $(starship init zsh)
 
 bindkey "" autosuggest-accept
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 # pip install virtualenv && virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
@@ -713,7 +713,4 @@ export VIRTUALENVWRAPPER_PYTHON=$(which python)
 alias ipfmt="python3 $HOME/fucking-script/ip_format.py"
 alias rekeymap="sh $HOME/dotfiles/sh/xmodmap.sh"
 
-# fancy command:
-#   cmatrix sl screenfetch
-# cmatrix -absr
 export PATH="$PATH:$HOME/.ft"
