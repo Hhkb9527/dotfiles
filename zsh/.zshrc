@@ -704,13 +704,13 @@ export LESSCHARSET=utf-8  # 解决git显示乱码
 bindkey "" autosuggest-accept
 # eval $(thefuck --alias)
 
-# pip install virtualenv && virtualenvwrapper
+# sudo pip3 install virtualenv && sudo pip3 install virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 source $(which virtualenvwrapper.sh)
-export VIRTUALENVWRAPPER_PYTHON=$(which python)
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # depends on fucking-script
 alias ipfmt="python3 $HOME/fucking-script/ip_format.py"
 alias rekeymap="sh $HOME/dotfiles/sh/xmodmap.sh"
 
-export PATH="$PATH:$HOME/.ft"
+export PATH="$PATH:$HOME/.ft:/usr/local/node/bin"
