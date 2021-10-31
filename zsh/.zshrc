@@ -713,4 +713,8 @@ export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 alias ipfmt="python3 $HOME/fucking-script/ip_format.py"
 alias rekeymap="sh $HOME/dotfiles/sh/xmodmap.sh"
 
-export PATH="$PATH:$HOME/.ft:/usr/local/node/bin"
+export PATH="$PATH:$HOME/.ft:/usr/local/node/bin:/usr/local/clang+llvm/bin:/usr/local/protoc/bin:/home/fufuzhao/go/bin"
+
+export GO111MODULE=on
+export GOPROXY=https://mirrors.tencent.com/go/,direct
+export GOPRIVATE=*.code.oa.com 
