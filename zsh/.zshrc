@@ -717,4 +717,4 @@ export PATH="$PATH:$HOME/.ft:/usr/local/node/bin:/usr/local/clang+llvm/bin:/usr/
 
 export GO111MODULE=on
 export GOPROXY=https://mirrors.tencent.com/go/,direct
-export GOPRIVATE=*.code.oa.com 
+export GOPRIVATE=*.code.oa.com
