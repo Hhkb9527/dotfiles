@@ -715,6 +715,9 @@ alias rekeymap="sh $HOME/dotfiles/sh/xmodmap.sh"
 
 export PATH="$PATH:$HOME/.ft:/usr/local/node/bin:/usr/local/clang+llvm/bin:/usr/local/protoc/bin:/home/fufuzhao/go/bin"
 
+# export GOPROXY=https://mirrors.tencent.com/go/,direct
+# export GOPRIVATE=*.code.oa.com
 export GO111MODULE=on
-export GOPROXY=https://mirrors.tencent.com/go/,direct
-export GOPRIVATE=*.code.oa.com
+export GOPROXY="https://fufuzhao:shKFDGbS@goproxy.woa.com,direct"
+export GOPRIVATE=""
+export GOSUMDB="sum.woa.com+643d7a06+Ac5f5VOC4N8NUXdmhbm8pZSXIWfhek5JSmWdWrq7pLX4"
