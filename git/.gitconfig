@@ -1,8 +1,6 @@
 [user]
-; name = Elijah-F
-; email = Zhao_xiangshen@163.com
-name = fufuzhao
-email = fufuzhao@tencent.com
+name = xxx
+email = xxx@email.com
 
 [pull]
 rebase = false
@@ -17,7 +15,6 @@ ui = true
 [merge]
 tool = vimdiff
 
-; sudo pacman -S diff-so-fancy
 [color "diff-highlight"]
 oldNormal = red bold
 oldHighlight = red bold 52
@@ -34,14 +31,6 @@ whitespace = red reverse
 
 [commit]
 template = ~/.gitmessage
-
-[url "git@git.code.oa.com:"]
-insteadOf = https://git.code.oa.com/
-insteadOf = http://git.code.oa.com/
-
-[url "git@git.woa.com:"]
-insteadOf = https://git.woa.com/
-insteadOf = http://git.woa.com/
 
 [url "git@github.com:"]
 insteadOf = https://github.com/
